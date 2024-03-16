@@ -1,3 +1,0 @@
-MinNumber:1    
-MaxNumber:100  
-MaxAttempts:5  

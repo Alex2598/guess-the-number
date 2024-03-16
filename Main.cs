@@ -12,8 +12,10 @@ namespace ConsoleApp11
     {
         static void Main()
         {
-            SettingsLoader settingsLoader = new SettingsLoader();
-            GameSettings settings = settingsLoader.LoadSettingsFromFile("C:\\Users\\Алексей\\source\\repos\\ConsoleApp11\\Config\\settings.txt");
+            ISettingsProvider fileSettingsProvider = new FileSettingsProvider("C:\\guess-the-number\\Config\\setting.txt");
+            SettingsLoader settingsLoader = new SettingsLoader(fileSettingsProvider);
+
+            GameSettings settings = settingsLoader.LoadSettings();
 
             INumberGenerator numberGenerator = new RandomNumberGenerator();
             IUserInterface userInterface = new ConsoleUserInterface();

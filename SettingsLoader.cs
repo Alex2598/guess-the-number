@@ -8,33 +8,24 @@ namespace ConsoleApp11
 {
     public class SettingsLoader
     {
-        public GameSettings LoadSettingsFromFile(string filePath)
+        private ISettingsProvider _settingsProvider;
+
+        public SettingsLoader(ISettingsProvider settingsProvider)
         {
-            string[] lines = File.ReadAllLines(filePath);
+            _settingsProvider = settingsProvider;
+        }
 
-            int minNumber = 0, maxNumber = 0, maxAttempts = 0;
-
-            foreach (var line in lines)
+        public GameSettings LoadSettings()
+        {
+            try
             {
-                string[] parts = line.Split(':');
-                if (parts.Length == 2)
-                {
-                    switch (parts[0])
-                    {
-                        case "MinNumber":
-                            int.TryParse(parts[1], out minNumber);
-                            break;
-                        case "MaxNumber":
-                            int.TryParse(parts[1], out maxNumber);
-                            break;
-                        case "MaxAttempts":
-                            int.TryParse(parts[1], out maxAttempts);
-                            break;
-                    }
-                }
+                return _settingsProvider.GetSettings();
             }
-
-            return new GameSettings { MinNumber = minNumber, MaxNumber = maxNumber, MaxAttempts = maxAttempts };
+            catch (FileNotFoundException)
+            {
+                _settingsProvider = new ManualSettingsProvider(new ConsoleUserInterface());
+                return _settingsProvider.GetSettings();
+            }
         }
     }
 }

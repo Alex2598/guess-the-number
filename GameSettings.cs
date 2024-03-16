@@ -11,9 +11,6 @@ namespace ConsoleApp11
     {
         public int MinNumber { get; set; }
         public int MaxNumber { get; set; }
-        public int MaxAttempts
-        {
-            get; set;
-        }
+        public int MaxAttempts { get; set; }
     }
 }
