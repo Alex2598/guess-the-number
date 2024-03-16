@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Config\" />
+    <Compile Remove="Config\Новая папка\**" />
+    <EmbeddedResource Remove="Config\Новая папка\**" />
+    <None Remove="Config\Новая папка\**" />
   </ItemGroup>
 
 </Project>

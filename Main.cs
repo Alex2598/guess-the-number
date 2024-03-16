@@ -12,7 +12,7 @@ namespace ConsoleApp11
     {
         static void Main()
         {
-            ISettingsProvider fileSettingsProvider = new FileSettingsProvider("C:\\guess-the-number\\Config\\setting.txt");
+            ISettingsProvider fileSettingsProvider = new FileSettingsProvider("C:\\guess-the-number\\Config\\settings.txt");
             SettingsLoader settingsLoader = new SettingsLoader(fileSettingsProvider);
 
             GameSettings settings = settingsLoader.LoadSettings();
